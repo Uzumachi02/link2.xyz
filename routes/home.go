@@ -3,9 +3,9 @@ package routes
 import (
 	"net/http"
 
-	"github.com/Uzumachi02/link2.xyz/utils"
+	"github.com/labstack/echo/v4"
 )
 
-func homeGetHandler(w http.ResponseWriter, r *http.Request) {
-	utils.ExecuteTemplate(w, "home.html", nil)
+func homeGetHandler(c echo.Context) error {
+	return c.String(http.StatusOK, "Hello, World!")
 }

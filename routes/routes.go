@@ -1,10 +1,20 @@
 package routes
 
-import "github.com/gorilla/mux"
+import (
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+)
 
-// NewRouter ...
-func NewRouter() *mux.Router {
-	r := mux.NewRouter()
-	r.HandleFunc("/", homeGetHandler).Methods("GET")
-	return r
+// New ...
+func New() *echo.Echo {
+	e := echo.New()
+
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	api := e.Group("/api")
+
+	api.GET("/", homeGetHandler)
+
+	return e
 }
