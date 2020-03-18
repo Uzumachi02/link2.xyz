@@ -6,6 +6,28 @@
     <title>Home view</title>
   </head>
   <body>
-    Home view
+    <form id="link-form" action="/api/link" method="POST">
+      <p>
+        <label for="target_link">Ссылка</label>
+        <input id="target_link" type="text" name="target_url" />
+      </p>
+      <p>
+        <input type="submit" value="Сократить" />
+      </p>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $("#link-form").submit(function(e) {
+          e.preventDefault();
+          var $th = $(this);
+
+          $.post($th.attr("action"), $th.serializeArray()).done(res => {
+            console.log("res", res);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
