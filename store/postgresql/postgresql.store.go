@@ -3,7 +3,7 @@ package postgresql
 import (
 	"log"
 
-	"github.com/Uzumachi02/link2.xyz/components/link"
+	"github.com/Uzumachi02/link2.xyz/store"
 	"github.com/go-pg/pg/v9"
 )
 
@@ -44,7 +44,7 @@ func (ps *PostgresqlStore) Close() {
 }
 
 // Link ...
-func (ps *PostgresqlStore) Link() link.ILinkRepository {
+func (ps *PostgresqlStore) Link() store.ILinkRepository {
 	if ps.linkRepository != nil {
 		return ps.linkRepository
 	}

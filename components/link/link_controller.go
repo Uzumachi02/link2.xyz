@@ -3,6 +3,7 @@ package link
 import (
 	"net/http"
 
+	"github.com/Uzumachi02/link2.xyz/utils"
 	"github.com/labstack/echo/v4"
 )
 
@@ -13,9 +14,16 @@ func createLink(c echo.Context) error {
 		return err
 	}
 
-	saveLink(f)
+	hash, err := saveLink(f)
+	if err != nil {
+		return err
+	}
 
-	return c.JSON(http.StatusOK, f)
+	response := &utils.APIResponse{
+		Response: hash,
+	}
+
+	return c.JSON(http.StatusOK, response)
 }
 
 func findLink(c echo.Context) error {
